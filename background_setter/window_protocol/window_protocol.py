@@ -1,9 +1,11 @@
 import logging
-import os
+import pathlib
 import re
 import subprocess
 from abc import ABC, abstractmethod
+from typing import List
 
+from background_setter.screen.screen import Screen
 from background_setter.screen.screen_resolution import ScreenResolution
 from background_setter.window_protocol.desktop_environment import DesktopEnvironment
 
@@ -16,21 +18,6 @@ class WindowProtocol(ABC):
 
     def __init__(self, desktop_environment: DesktopEnvironment):
         self.desktop_environment: DesktopEnvironment = desktop_environment
-
-    @staticmethod
-    def detect_desktop_environment() -> DesktopEnvironment:
-        """
-        The function detects the current desktop environment and returns the corresponding enum value.
-        :return: a value of the `DesktopEnvironment` enum type, which can be one of the following:
-        `DesktopEnvironment.KDE`, `DesktopEnvironment.GNOME`, or `DesktopEnvironment.OTHER`.
-        """
-        desktop_env: str = os.environ['XDG_CURRENT_DESKTOP'].split(':')[1].lower()
-        if desktop_env == DesktopEnvironment.KDE:
-            return DesktopEnvironment.KDE
-        elif desktop_env == DesktopEnvironment.GNOME:
-            return DesktopEnvironment.GNOME
-        else:
-            return DesktopEnvironment.OTHER
 
     @staticmethod
     def get_desktop_resolution() -> ScreenResolution:
@@ -47,15 +34,20 @@ class WindowProtocol(ABC):
                 return ScreenResolution(*screen_res)
         return ScreenResolution(0, 0)
 
+    @staticmethod
     @abstractmethod
-    def update_kde_background(self, image_path: str) -> None:
+    def get_screens() -> List[Screen]:
         pass
 
     @abstractmethod
-    def update_gnome_background(self, image_path: str) -> None:
+    def update_kde_background(self, image_path: pathlib.Path) -> None:
         pass
 
-    def update_background_image(self, image_path: str) -> None:
+    @abstractmethod
+    def update_gnome_background(self, image_path: pathlib.Path) -> None:
+        pass
+
+    def update_background_image(self, image_path: pathlib.Path) -> None:
         match self.desktop_environment:
             case DesktopEnvironment.KDE:
                 self.update_kde_background(image_path)
