@@ -1,4 +1,3 @@
-import logging
 import os
 from typing import List
 
@@ -7,8 +6,8 @@ from background_setter.window_protocol.window_protocol import WindowProtocol
 
 
 class X11(WindowProtocol):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, desktop_environment: DesktopEnvironment):
+        super().__init__(desktop_environment)
 
     def update_gnome_background(self, image_path: str) -> None:
         """

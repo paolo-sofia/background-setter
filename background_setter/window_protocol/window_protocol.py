@@ -14,8 +14,8 @@ class WindowProtocol(ABC):
     environment, retrieving the current screen resolution, and updating the background image.
     """
 
-    def __init__(self):
-        self.desktop_environment: DesktopEnvironment = self.detect_desktop_environment()
+    def __init__(self, desktop_environment: DesktopEnvironment):
+        self.desktop_environment: DesktopEnvironment = desktop_environment
 
     @staticmethod
     def detect_desktop_environment() -> DesktopEnvironment:
