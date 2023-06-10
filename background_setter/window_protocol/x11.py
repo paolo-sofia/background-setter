@@ -10,19 +10,7 @@ class X11(WindowProtocol):
     def __init__(self):
         super().__init__()
 
-    def update_background_image(self, image_path: str) -> None:
-        match self.desktop_environment:
-            case DesktopEnvironment.KDE:
-                self.update_kde_background(image_path)
-            case DesktopEnvironment.GNOME:
-                self.update_gnome_background(image_path)
-            case _:
-                logging.error('Cannot update background image. Desktop environment not supported')
-
-        return
-
-    @staticmethod
-    def update_gnome_background(image_path: str) -> None:
+    def update_gnome_background(self, image_path: str) -> None:
         """
         This function updates the GNOME desktop background image using the provided image path.
 
@@ -35,8 +23,7 @@ class X11(WindowProtocol):
         os.system(f"gsettings set org.gnome.desktop.background picture-uri-dark '{image_path}'")
         return
 
-    @staticmethod
-    def update_kde_background(image_path: str) -> None:
+    def update_kde_background(self, image_path: str) -> None:
         """
         This function updates the KDE desktop background by modifying a configuration file with a new image path.
 

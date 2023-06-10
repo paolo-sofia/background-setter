@@ -1,3 +1,4 @@
+import logging
 import os
 import re
 import subprocess
@@ -47,10 +48,20 @@ class WindowProtocol(ABC):
         return ScreenResolution(0, 0)
 
     @abstractmethod
-    def update_background_image(self, image_path: str) -> None:
-        """
-        This is a placeholder function that takes in an image path and updates the background image.
-
-        :param image_path: A string representing the file path of the new background image that needs to be updated
-        """
+    def update_kde_background(self, image_path: str) -> None:
         pass
+
+    @abstractmethod
+    def update_gnome_background(self, image_path: str) -> None:
+        pass
+
+    def update_background_image(self, image_path: str) -> None:
+        match self.desktop_environment:
+            case DesktopEnvironment.KDE:
+                self.update_kde_background(image_path)
+            case DesktopEnvironment.GNOME:
+                self.update_gnome_background(image_path)
+            case _:
+                logging.error('Cannot update background image. Desktop environment not supported')
+
+        return
