@@ -21,6 +21,13 @@ class BackgroundSetterClient:
         self.used_images: UsedImages = self.initialize_used_images()
 
     def initialize_device_id(self) -> str:
+        """
+        The function initializes a unique device ID by searching for existing device IDs in a directory and generating 
+        a new one if none are found.
+        :return: The method `initialize_device_id` returns a string representing the device ID. If a device ID is found 
+        in the `used_images_path` directory, it returns that ID. Otherwise, it generates a new device ID using the
+        `uuid.uuid4()` method and returns it.
+        """
         pattern: re.Pattern = re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}.json',
                                          re.I)
         new_device_id: str = f"{str(uuid.uuid4())}.json"
@@ -50,7 +57,8 @@ class BackgroundSetterClient:
         :param all_images: A list of strings representing the file names of all available images
         :type all_images: List[str]
         :param orientation: The orientation parameter is of type ScreenOrientation, which is an enum that represents the
-        orientation of a screen. It can have two possible values: ScreenOrientation.HORIZONTAL or ScreenOrientation.VERTICAL
+        orientation of a screen. It can have two possible values: ScreenOrientation.HORIZONTAL or 
+        ScreenOrientation.VERTICAL
         :type orientation: ScreenOrientation
         """
 
@@ -61,6 +69,17 @@ class BackgroundSetterClient:
         return available_images or all_images
 
     def update_used_images(self, image_path: str, orientation: ScreenOrientation) -> None:
+        """
+        This function updates a list of used images based on their orientation.
+        
+        :param image_path: A string representing the file path of an image that has been used in the program
+        :type image_path: str
+        :param orientation: ScreenOrientation is an enumerated type that represents the orientation of a screen. It can 
+        have two possible values: HORIZONTAL or VERTICAL. This parameter is used to determine which list to append the 
+        image_path to in the used_images object
+        :type orientation: ScreenOrientation
+        :return: `None`.
+        """
         match orientation:
             case ScreenOrientation.HORIZONTAL:
                 self.used_images.images.horizontal.append(image_path)
@@ -69,10 +88,18 @@ class BackgroundSetterClient:
         return
 
     def update_used_images_last_update(self) -> None:
+        """
+        This function updates the last update date of used images to today's date.
+        :return: `None`.
+        """
         self.used_images.last_update = datetime.date.today().strftime('%Y-%m-%d')
         return
 
     def dump_update_used_images(self) -> None:
+        """
+        This function dumps the used images into a JSON file.
+        :return: `None`.
+        """
         if not self.used_images_path.exists():
             self.used_images_path.mkdir(parents=True)
 

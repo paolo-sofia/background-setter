@@ -56,8 +56,8 @@ def get_all_images_orientation(folder_path: pathlib.Path) -> List[str]:
 
     images_available: List[str] = []
     for ext in available_extensions:
-        ext_path: str = str(folder_path / f'*.{ext}')
-        images_available.extend(glob(ext_path))
+        str(folder_path / f'*.{ext}')
+        images_available.extend(glob(str(folder_path / f'*.{ext}')))
 
     return images_available
 
@@ -65,9 +65,8 @@ def get_all_images_orientation(folder_path: pathlib.Path) -> List[str]:
 if __name__ == '__main__':
     config: Dict[str, Any] = load_config()
     parser = argparse.ArgumentParser(
-        prog='ProgramName',
-        description='What the program does',
-        epilog='Text at the bottom of help')
+        prog='Background setter',
+        description='Sets a new background image everyday')
 
     parser.add_argument('-v', '--vertical', type=str, default='/home/paolo/Nextcloud/Sfondi/Verticali')
     parser.add_argument('-o', '--horizontal', type=str, default='/home/paolo/Nextcloud/Sfondi/orizzontali')
