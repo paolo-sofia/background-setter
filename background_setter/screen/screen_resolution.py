@@ -19,6 +19,8 @@ class ScreenResolution:
         :return: an integer value. If the input value is already an integer, it will be returned as is. If the input
         value is not an integer, it will be converted to an integer and then returned.
         """
+        if not isinstance(value, Number):
+            value = 0
         return value if isinstance(value, int) else int(value)
 
     def __post_init__(self) -> None:
@@ -27,11 +29,6 @@ class ScreenResolution:
         them to 0 if they are not.
         :return: `None`.
         """
-        if not isinstance(self.width, Number):
-            self.width = 0
         self.width = self.check_value(self.width)
-
-        if not isinstance(self.height, Number):
-            self.height = 0
         self.height = self.check_value(self.height)
         return

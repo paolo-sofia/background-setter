@@ -19,6 +19,8 @@ class ScreenOffset:
         :return: an integer value. If the input value is already an integer, it will be returned as is. If the input
         value is not an integer, it will be converted to an integer and then returned.
         """
+        if not isinstance(value, Number):
+            value = 0
         return value if isinstance(value, int) else int(value)
 
     def __post_init__(self) -> None:
@@ -27,11 +29,6 @@ class ScreenOffset:
         them to 0 if they are not.
         :return: `None`.
         """
-        if not isinstance(self.x, Number):
-            self.x = 0
         self.x = self.check_value(self.x)
-
-        if not isinstance(self.y, Number):
-            self.y = 0
         self.y = self.check_value(self.y)
         return
