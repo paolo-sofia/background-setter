@@ -4,11 +4,11 @@ import re
 import subprocess
 from typing import List, Iterator
 
-from background_setter.screen.screen import Screen
-from background_setter.screen.screen_offset import ScreenOffset
-from background_setter.screen.screen_resolution import ScreenResolution
-from background_setter.window_protocol.desktop_environment import DesktopEnvironment
-from background_setter.window_protocol.window_protocol import WindowProtocol
+from screen.screen import Screen
+from screen.screen_offset import ScreenOffset
+from screen.screen_resolution import ScreenResolution
+from window_protocol.desktop_environment import DesktopEnvironment
+from window_protocol.window_protocol import WindowProtocol
 
 
 class X11(WindowProtocol):

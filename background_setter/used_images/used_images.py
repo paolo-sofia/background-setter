@@ -1,7 +1,7 @@
 import datetime
 from dataclasses import dataclass, asdict
 
-from background_setter.used_images.available_images import ImagesList
+from used_images.available_images import ImagesList
 
 
 @dataclass

@@ -10,9 +10,9 @@ from typing import List, Any, Dict, Tuple
 
 import cv2
 
-from background_setter.client.client import BackgroundSetterClient
-from background_setter.dektop.desktop import Desktop
-from background_setter.screen.screen_orientation import ScreenOrientation
+from client.client import BackgroundSetterClient
+from dektop.desktop import Desktop
+from screen.screen_orientation import ScreenOrientation
 
 
 def validate_args(args: List[str]) -> bool:  # sourcery skip: use-any
@@ -36,7 +36,7 @@ def load_config() -> Dict[str, Any]:
     This function loads a TOML configuration file and returns its contents as a dictionary.
     :return: A dictionary containing the data loaded from the "config.toml" file.
     """
-    with open("config.toml", "rb") as f:
+    with open( pathlib.Path(__file__).parent.absolute() / 'config.toml', "rb") as f:
         data = tomllib.load(f)
     return data
 

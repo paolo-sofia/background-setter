@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from background_setter.screen.screen_offset import ScreenOffset
-from background_setter.screen.screen_orientation import ScreenOrientation
-from background_setter.screen.screen_resolution import ScreenResolution
+from screen.screen_offset import ScreenOffset
+from screen.screen_orientation import ScreenOrientation
+from screen.screen_resolution import ScreenResolution
 
 
 @dataclass(slots=True)
