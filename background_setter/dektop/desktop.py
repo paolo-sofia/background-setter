@@ -30,7 +30,8 @@ class Desktop:
         :return: a value of the `DesktopEnvironment` enum type, which can be one of the following:
         `DesktopEnvironment.KDE`, `DesktopEnvironment.GNOME`, or `DesktopEnvironment.OTHER`.
         """
-        desktop_env: str = os.environ['XDG_CURRENT_DESKTOP'].split(':')[1].lower()
+        desktop_env: List[str] = os.environ['XDG_CURRENT_DESKTOP'].lower().split(':')
+        desktop_env: str = desktop_env[1] if len(desktop_env) > 1 else desktop_env[0]
         if desktop_env == DesktopEnvironment.KDE:
             return DesktopEnvironment.KDE
         elif desktop_env == DesktopEnvironment.GNOME:
