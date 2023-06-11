@@ -3,7 +3,7 @@ import pathlib
 import re
 import subprocess
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Iterator
 
 from background_setter.screen.screen import Screen
 from background_setter.screen.screen_resolution import ScreenResolution
@@ -27,7 +27,8 @@ class WindowProtocol(ABC):
         represents the current screen resolution of the desktop. If the screen resolution cannot be determined, it
         returns a `ScreenResolution` instance with width and height set to 0.
         """
-        output = iter(subprocess.Popen(['xrandr | grep current'], stdout=subprocess.PIPE, shell=True).stdout)
+        output: Iterator[bytes] = iter(
+            subprocess.Popen(['xrandr | grep current'], stdout=subprocess.PIPE, shell=True).stdout)
         for row in output:
             if screen_res := re.search(r'current \d+ x \d+', row.decode('UTF-8')):
                 screen_res = [int(x) for x in re.findall(r'\d+', screen_res.group())]

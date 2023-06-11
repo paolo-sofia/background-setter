@@ -1,5 +1,6 @@
 import os
-from typing import Dict, List, Final
+import pathlib
+from typing import List
 
 import cv2
 import numpy as np
@@ -10,11 +11,9 @@ from background_setter.window_protocol.desktop_environment import DesktopEnviron
 from background_setter.window_protocol.window_protocol import WindowProtocol
 from background_setter.window_protocol.window_protocol_factory import WindowProtocolFactory
 
-HOME: Final = os.environ["HOME"]
-
 
 class Desktop:
-    BACKGROUND_PATH: Final = f'{HOME}/.local/share/backgrounds/sfondo.jpg'
+    BACKGROUND_PATH: pathlib.Path = pathlib.Path('~/.local/share/backgrounds/sfondo.jpg').expanduser()
 
     def __init__(self):
         self.desktop_environment: DesktopEnvironment = self.detect_desktop_environment()
@@ -39,14 +38,14 @@ class Desktop:
         else:
             return DesktopEnvironment.OTHER
 
-    def extract_only_used_images_from_json(self) -> None:
-        used_images: Dict[str, List[str]] = {'horizontal': [], 'vertical': []}
-        for date in self.used_images_json:
-            for key in self.used_images_json[date]:
-                used_images[key].extend(self.used_images_json[date][key])
-        self.used_images = used_images
-        return
+    # def extract_only_used_images_from_json(self) -> None:
+    #     used_images: Dict[str, List[str]] = {'horizontal': [], 'vertical': []}
+    #     for date in self.used_images_json:
+    #         for key in self.used_images_json[date]:
+    #             used_images[key].extend(self.used_images_json[date][key])
+    #     self.used_images = used_images
+    #     return
 
     def save_new_background_image(self) -> None:
-        cv2.imwrite(self.background_path, self.background_img)
+        cv2.imwrite(str(self.BACKGROUND_PATH), self.background_img)
         return

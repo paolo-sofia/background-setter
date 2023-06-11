@@ -2,7 +2,7 @@ import os
 import pathlib
 import re
 import subprocess
-from typing import List, Iterable
+from typing import List, Iterator
 
 from background_setter.screen.screen import Screen
 from background_setter.screen.screen_offset import ScreenOffset
@@ -18,7 +18,7 @@ class X11(WindowProtocol):
     @staticmethod
     def get_screens() -> List[Screen]:
         screen_list: List[Screen] = []
-        output: Iterable = iter(
+        output: Iterator[bytes] = iter(
             subprocess.Popen(['xrandr | grep connected'], stdout=subprocess.PIPE, shell=True).stdout)
         for row in output:
             if screen_info := re.search('\d+x\d+\+\d+\+\d+', row.decode('UTF-8')):
