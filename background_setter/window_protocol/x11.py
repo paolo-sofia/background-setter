@@ -17,6 +17,11 @@ class X11(WindowProtocol):
 
     @staticmethod
     def get_screens() -> List[Screen]:
+        """
+        This function retrieves information about connected screens using xrandr and returns a list of Screen objects
+        containing their resolution and offset.
+        :return: The function `get_screens()` returns a list of `Screen` objects.
+        """
         screen_list: List[Screen] = []
         output: Iterator[bytes] = iter(
             subprocess.Popen(['xrandr | grep connected'], stdout=subprocess.PIPE, shell=True).stdout)

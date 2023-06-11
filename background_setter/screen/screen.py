@@ -12,6 +12,10 @@ class Screen:
     orientation: ScreenOrientation = ScreenOrientation.HORIZONTAL
 
     def __post_init__(self) -> None:
+        """
+        This function sets the orientation of the screen based on the resolution.
+        :return: `None`.
+        """
         self.orientation = ScreenOrientation.VERTICAL if self.resolution.width < self.resolution.height \
             else ScreenOrientation.HORIZONTAL
         return

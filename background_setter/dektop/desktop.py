@@ -47,5 +47,9 @@ class Desktop:
     #     return
 
     def save_new_background_image(self) -> None:
+        """
+        This function saves a background image to a specified path using OpenCV's `imwrite` function.
+        :return: `None`.
+        """
         cv2.imwrite(str(self.BACKGROUND_PATH), self.background_img)
         return

@@ -1,8 +1,5 @@
-import json
 from dataclasses import dataclass, field, asdict
-from typing import List, Dict
-
-from background_setter.screen.screen_orientation import ScreenOrientation
+from typing import List
 
 
 @dataclass
@@ -12,14 +9,9 @@ class ImagesList:
 
     @property
     def __dict__(self):
+        """
+        This function returns a dictionary representation of an object using the asdict() function.
+        :return: The `__dict__` method is returning the dictionary representation of the object using the `asdict`
+        function of the dataclasses package.
+        """
         return asdict(self)
-
-    @property
-    def json(self):
-        return json.dumps(self.__dict__)
-
-    def to_dict(self) -> Dict[str, List[str]]:
-        return {
-            ScreenOrientation.HORIZONTAL: self.horizontal,
-            ScreenOrientation.VERTICAL: self.vertical
-        }

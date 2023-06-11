@@ -1,5 +1,4 @@
 import datetime
-import json
 from dataclasses import dataclass, asdict
 
 from background_setter.used_images.available_images import ImagesList
@@ -12,8 +11,9 @@ class UsedImages:
 
     @property
     def __dict__(self):
+        """
+        This function returns a dictionary representation of an object using the asdict() function.
+        :return: The `__dict__` method is returning the dictionary representation of the object using the `asdict`
+        function of the dataclasses package.
+        """
         return asdict(self)
-
-    @property
-    def json(self):
-        return json.dumps(self.__dict__)

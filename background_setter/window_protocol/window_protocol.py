@@ -38,17 +38,41 @@ class WindowProtocol(ABC):
     @staticmethod
     @abstractmethod
     def get_screens() -> List[Screen]:
+        """
+        The function `get_screens()` returns a list of `Screen` objects.
+        """
         pass
 
     @abstractmethod
     def update_kde_background(self, image_path: pathlib.Path) -> None:
+        """
+        This is a placeholder function that takes in an image path and updates the KDE background.
+
+        :param image_path: The parameter `image_path` is of type `pathlib.Path` and represents the path to the image file
+        that will be used as the new KDE desktop background
+        :type image_path: pathlib.Path
+        """
         pass
 
     @abstractmethod
     def update_gnome_background(self, image_path: pathlib.Path) -> None:
+        """
+        This is a placeholder function with no implementation to update the GNOME desktop background with an image.
+
+        :param image_path: A pathlib.Path object representing the file path of the image to be used as the GNOME desktop
+        background
+        :type image_path: pathlib.Path
+        """
         pass
 
     def update_background_image(self, image_path: pathlib.Path) -> None:
+        """
+        This function updates the background image of the desktop environment based on the type of environment.
+
+        :param image_path: A pathlib.Path object representing the path to the new background image file
+        :type image_path: pathlib.Path
+        :return: `None`.
+        """
         match self.desktop_environment:
             case DesktopEnvironment.KDE:
                 self.update_kde_background(image_path)
