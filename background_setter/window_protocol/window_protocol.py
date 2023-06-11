@@ -5,9 +5,9 @@ import subprocess
 from abc import ABC, abstractmethod
 from typing import List, Iterator
 
-from background_setter.screen.screen import Screen
-from background_setter.screen.screen_resolution import ScreenResolution
-from background_setter.window_protocol.desktop_environment import DesktopEnvironment
+from screen.screen import Screen
+from screen.screen_resolution import ScreenResolution
+from window_protocol.desktop_environment import DesktopEnvironment
 
 
 class WindowProtocol(ABC):

@@ -2,11 +2,11 @@ import logging
 import os
 from typing import Optional
 
-from background_setter.window_protocol.desktop_environment import DesktopEnvironment
-from background_setter.window_protocol.wayland import Wayland
-from background_setter.window_protocol.window_protocol import WindowProtocol
-from background_setter.window_protocol.window_protocol_type import WindowProtocolType
-from background_setter.window_protocol.x11 import X11
+from window_protocol.desktop_environment import DesktopEnvironment
+from window_protocol.wayland import Wayland
+from window_protocol.window_protocol import WindowProtocol
+from window_protocol.window_protocol_type import WindowProtocolType
+from window_protocol.x11 import X11
 
 
 class WindowProtocolFactory:

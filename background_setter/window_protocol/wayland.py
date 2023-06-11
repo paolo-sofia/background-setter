@@ -1,8 +1,8 @@
 import pathlib
 from typing import List
 
-from background_setter.screen.screen import Screen
-from background_setter.window_protocol.x11 import X11
+from screen.screen import Screen
+from window_protocol.x11 import X11
 
 
 class Wayland(X11):

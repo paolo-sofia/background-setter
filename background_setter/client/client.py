@@ -6,9 +6,9 @@ import re
 import uuid
 from typing import List, Set
 
-from background_setter.screen.screen_orientation import ScreenOrientation
-from background_setter.used_images.available_images import ImagesList
-from background_setter.used_images.used_images import UsedImages
+from screen.screen_orientation import ScreenOrientation
+from used_images.available_images import ImagesList
+from used_images.used_images import UsedImages
 
 
 class BackgroundSetterClient:
