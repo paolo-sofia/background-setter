@@ -4,6 +4,7 @@ import json
 import pathlib
 import re
 import uuid
+from dataclasses import fields, dataclass
 from typing import List, Set
 
 from screen.screen_orientation import ScreenOrientation
@@ -19,6 +20,13 @@ class BackgroundSetterClient:
         self.device_id: str = self.initialize_device_id()
         self.full_path: pathlib.Path = self.used_images_path / self.device_id
         self.used_images: UsedImages = self.initialize_used_images()
+
+    def dataclass_from_dict(self, klass, dikt):
+        try:
+            fieldtypes = {f.name:f.type for f in fields(klass)}
+            return klass(**{f:self.dataclass_from_dict(fieldtypes[f],dikt[f]) for f in dikt})
+        except:
+            return dikt
 
     def initialize_device_id(self) -> str:
         """
@@ -47,7 +55,7 @@ class BackgroundSetterClient:
 
         with open(self.full_path, 'r') as f:
             used_images = json.load(f)
-        return UsedImages(**used_images)
+        return self.dataclass_from_dict(UsedImages, used_images)
 
     def get_available_images(self, all_images: List[str], orientation: ScreenOrientation) -> List[str]:
         """
