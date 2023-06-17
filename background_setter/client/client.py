@@ -4,7 +4,7 @@ import json
 import pathlib
 import re
 import uuid
-from dataclasses import fields, dataclass
+from dataclasses import fields
 from typing import List, Set
 
 from screen.screen_orientation import ScreenOrientation
@@ -23,8 +23,8 @@ class BackgroundSetterClient:
 
     def dataclass_from_dict(self, klass, dikt):
         try:
-            fieldtypes = {f.name:f.type for f in fields(klass)}
-            return klass(**{f:self.dataclass_from_dict(fieldtypes[f],dikt[f]) for f in dikt})
+            fieldtypes = {f.name: f.type for f in fields(klass)}
+            return klass(**{f: self.dataclass_from_dict(fieldtypes[f], dikt[f]) for f in dikt})
         except:
             return dikt
 
@@ -88,11 +88,10 @@ class BackgroundSetterClient:
         :type orientation: ScreenOrientation
         :return: `None`.
         """
-        match orientation:
-            case ScreenOrientation.HORIZONTAL:
-                self.used_images.images.horizontal.append(image_path)
-            case ScreenOrientation.VERTICAL:
-                self.used_images.images.vertical.append(image_path)
+        if orientation == ScreenOrientation.HORIZONTAL:
+            self.used_images.images.horizontal.append(image_path)
+        elif orientation == ScreenOrientation.VERTICAL:
+            self.used_images.images.vertical.append(image_path)
         return
 
     def update_used_images_last_update(self) -> None:

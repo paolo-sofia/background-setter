@@ -3,16 +3,19 @@
 import argparse
 import pathlib
 import random
-import tomllib
 from datetime import date
 from glob import glob
-from typing import List, Any, Dict, Tuple
+from typing import Any, Dict, List, Tuple
 
 import cv2
+import tomli
 
 from client.client import BackgroundSetterClient
 from dektop.desktop import Desktop
 from screen.screen_orientation import ScreenOrientation
+
+with open("/home/paolo/git/background_setter/background_setter/config.toml", "rb") as f:
+    toml_dict = tomli.load(f)
 
 
 def validate_args(args: List[str]) -> bool:  # sourcery skip: use-any
@@ -36,8 +39,8 @@ def load_config() -> Dict[str, Any]:
     This function loads a TOML configuration file and returns its contents as a dictionary.
     :return: A dictionary containing the data loaded from the "config.toml" file.
     """
-    with open( pathlib.Path(__file__).parent.absolute() / 'config.toml', "rb") as f:
-        data = tomllib.load(f)
+    with open(pathlib.Path(__file__).parent.absolute() / 'config.toml', "rb") as f:
+        data = tomli.load(f)
     return data
 
 
