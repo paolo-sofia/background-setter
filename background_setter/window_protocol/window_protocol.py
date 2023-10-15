@@ -73,12 +73,11 @@ class WindowProtocol(ABC):
         :type image_path: pathlib.Path
         :return: `None`.
         """
-        match self.desktop_environment:
-            case DesktopEnvironment.KDE:
-                self.update_kde_background(image_path)
-            case DesktopEnvironment.GNOME:
-                self.update_gnome_background(image_path)
-            case _:
-                logging.error('Cannot update background image. Desktop environment not supported')
+        if self.desktop_environment == DesktopEnvironment.KDE:
+            self.update_kde_background(image_path)
+        elif self.desktop_environment == DesktopEnvironment.GNOME:
+            self.update_gnome_background(image_path)
+        else:
+            logging.error('Cannot update background image. Desktop environment not supported')
 
         return

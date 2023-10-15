@@ -26,11 +26,11 @@ class WindowProtocolFactory:
         depending on the value of the XDG_SESSION_TYPE environment variable. If the session type is not supported, the
         function returns None.
         """
-        match session_type := os.environ['XDG_SESSION_TYPE']:
-            case WindowProtocolType.X11:
-                return X11(desktop_environment)
-            case WindowProtocolType.WAYLAND:
-                return Wayland(desktop_environment)
-            case _:
-                logging.error(f'Cannot create window protocol class, {session_type} not yet supported')
-                return None
+        session_type = os.environ['XDG_SESSION_TYPE']
+        if session_type == WindowProtocolType.X11:
+            return X11(desktop_environment)
+        elif session_type == WindowProtocolType.WAYLAND:
+            return Wayland(desktop_environment)
+        else:
+            logging.error(f'Cannot create window protocol class, {session_type} not yet supported')
+            return None

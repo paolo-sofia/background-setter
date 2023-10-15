@@ -1,6 +1,3 @@
-from enum import StrEnum
-
-
-class ScreenOrientation(StrEnum):
+class ScreenOrientation:
     HORIZONTAL: str = 'horizontal'
     VERTICAL: str = 'vertical'
