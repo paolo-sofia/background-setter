@@ -1,7 +1,4 @@
-from enum import StrEnum
-
-
-class DesktopEnvironment(StrEnum):
+class DesktopEnvironment:
     GNOME: str = 'gnome'
     KDE: str = 'kde'
     HYPRLAND: str = "hyprland"

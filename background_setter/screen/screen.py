@@ -5,7 +5,7 @@ from screen.screen_orientation import ScreenOrientation
 from screen.screen_resolution import ScreenResolution
 
 
-@dataclass(slots=True)
+@dataclass
 class Screen:
     resolution: ScreenResolution
     offset: ScreenOffset
