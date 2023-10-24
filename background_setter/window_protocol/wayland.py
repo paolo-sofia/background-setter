@@ -3,10 +3,22 @@ from typing import List
 
 from screen.screen import Screen
 from window_protocol.x11 import X11
+import subprocess
 
 
 class Wayland(X11):
-    pass
+    HYPRPAPER_CONFIG_PATH: str = "~/.config/hypr/hyprpaper.conf"
+    def update_wayland_background(self, image_path: pathlib.Path) -> None:
+        """
+        This function updates the KDE desktop background by modifying a configuration file with a new image path.
+
+        :param image_path: The path to the image file that will be set as the KDE desktop background
+        :type image_path: str
+        :return: nothing (`None`).
+        """
+        command = ["swaybg", "-i", str(image_path)]
+        process = subprocess.Popen(command)
+        return
 
     # @staticmethod
     # def get_screens() -> List[Screen]:

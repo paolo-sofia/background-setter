@@ -65,6 +65,17 @@ class WindowProtocol(ABC):
         """
         pass
 
+    @abstractmethod
+    def update_wayland_background(self, image_path: pathlib.Path) -> None:
+        """
+        This is a placeholder function with no implementation to update the GNOME desktop background with an image.
+
+        :param image_path: A pathlib.Path object representing the file path of the image to be used as the GNOME desktop
+        background
+        :type image_path: pathlib.Path
+        """
+        pass
+
     def update_background_image(self, image_path: pathlib.Path) -> None:
         """
         This function updates the background image of the desktop environment based on the type of environment.
@@ -78,6 +89,8 @@ class WindowProtocol(ABC):
                 self.update_kde_background(image_path)
             case DesktopEnvironment.GNOME:
                 self.update_gnome_background(image_path)
+            case DesktopEnvironment.HYPRLAND:
+                self.update_wayland_background(image_path)
             case _:
                 logging.error('Cannot update background image. Desktop environment not supported')
 

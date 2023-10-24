@@ -36,6 +36,8 @@ class Desktop:
             return DesktopEnvironment.KDE
         elif desktop_env == DesktopEnvironment.GNOME:
             return DesktopEnvironment.GNOME
+        elif desktop_env == DesktopEnvironment.HYPRLAND:
+            return DesktopEnvironment.HYPRLAND
         else:
             return DesktopEnvironment.OTHER
 
