@@ -9,10 +9,10 @@ import sys
 import zoneinfo
 
 import cv2
-from background_setter.screen.screen import Screen
-from background_setter.client.client import BackgroundSetterClient
-from background_setter.dektop.desktop import Desktop
-from background_setter.screen.screen_orientation import ScreenOrientation
+from screen.screen import Screen
+from client.client import BackgroundSetterClient
+from dektop.desktop import Desktop
+from screen.screen_orientation import ScreenOrientation
 
 
 def validate_args(args: list[str]) -> bool:    # sourcery skip: use-any

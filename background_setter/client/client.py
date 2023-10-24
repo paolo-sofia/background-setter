@@ -6,9 +6,9 @@ import uuid
 import zoneinfo
 from dataclasses import fields
 
-from background_setter.screen.screen_orientation import ScreenOrientation
-from background_setter.used_images.available_images import ImagesList
-from background_setter.used_images.used_images import UsedImages
+from screen.screen_orientation import ScreenOrientation
+from used_images.available_images import ImagesList
+from used_images.used_images import UsedImages
 
 
 class BackgroundSetterClient:
@@ -38,7 +38,7 @@ class BackgroundSetterClient:
                                          re.I)
         new_device_id: str = f"{uuid.uuid4()!s}.json"
         for file in self.used_images_path.glob("*.json"):
-            if dev_uuid := pattern.search(file):
+            if dev_uuid := pattern.search(str(file)):
                 return dev_uuid.group()
         return new_device_id
 
