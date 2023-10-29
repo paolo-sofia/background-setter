@@ -68,3 +68,13 @@ class X11(WindowProtocol):
         with open(kde_config_file, 'w') as f:
             f.writelines(lines)
         return
+
+    def update_wayland_background(self, image_path: pathlib.Path) -> None:
+        """
+        This is a placeholder function with no implementation to update the GNOME desktop background with an image.
+
+        :param image_path: A pathlib.Path object representing the file path of the image to be used as the GNOME desktop
+        background
+        :type image_path: pathlib.Path
+        """
+        pass
