@@ -95,6 +95,7 @@ if __name__ == "__main__":
     desktop: Desktop = Desktop()
     today: str = datetime.datetime.now(tz=zoneinfo.ZoneInfo(key="Europe/Rome")).date().strftime("%Y-%m-%d")
     if client.used_images.last_update == today:
+        desktop.window_protocol.update_background_image(pathlib.Path(config["project"]["backgroun_path"]).expanduser())
         sys.exit()
 
     for scr in desktop.screens:

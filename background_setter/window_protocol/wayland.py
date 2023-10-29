@@ -8,6 +8,7 @@ import subprocess
 
 class Wayland(X11):
     HYPRPAPER_CONFIG_PATH: str = "~/.config/hypr/hyprpaper.conf"
+
     def update_wayland_background(self, image_path: pathlib.Path) -> None:
         """
         This function updates the KDE desktop background by modifying a configuration file with a new image path.
@@ -16,8 +17,8 @@ class Wayland(X11):
         :type image_path: str
         :return: nothing (`None`).
         """
-        command = ["swaybg", "-i", str(image_path)]
-        process = subprocess.Popen(command)
+        subprocess.Popen(["swaybg", "-i", str(image_path)])
+        subprocess.Popen(["eww", "reload"])
         return
 
     # @staticmethod
