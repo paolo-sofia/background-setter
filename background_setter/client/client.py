@@ -12,6 +12,30 @@ from used_images.used_images import UsedImages
 
 
 class BackgroundSetterClient:
+    """A class for managing background images and their usage on a device.
+
+        The BackgroundSetterClient class provides methods for initializing a unique device ID,
+        loading and updating used images, and getting available images based on screen orientation.
+
+        Args:
+            used_images_path (pathlib.Path): The path to the directory where used images are stored.
+
+        Attributes:
+            available_images (ImagesList): An instance of the ImagesList class representing the available images.
+            used_images_path (pathlib.Path): The path to the directory where used images are stored.
+            device_id (str): A unique device ID.
+            full_path (pathlib.Path): The full path to the used images file.
+            used_images (UsedImages): An instance of the UsedImages class representing the used images.
+
+        Methods:
+            dataclass_from_dict(klass, dikt): Convert a dictionary to a dataclass instance.
+            initialize_device_id(): Initialize a unique device ID.
+            initialize_used_images(): Initialize the used images dictionary.
+            get_available_images(all_images, orientation): Get a list of available images.
+            update_used_images(image_path, orientation): Update the list of used images.
+            update_used_images_last_update(): Update the last update date of used images.
+            dump_update_used_images(): Dump the used images into a JSON file.
+    """
 
     def __init__(self, used_images_path: pathlib.Path) -> None:
         self.available_images: ImagesList = ImagesList()
