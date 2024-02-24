@@ -6,9 +6,9 @@ import uuid
 import zoneinfo
 from dataclasses import fields
 
-from screen.screen_orientation import ScreenOrientation
-from used_images.available_images import ImagesList
-from used_images.used_images import UsedImages
+from ..screen.screen_orientation import ScreenOrientation
+from ..used_images.available_images import ImagesList
+from ..used_images.used_images import UsedImages
 
 
 class BackgroundSetterClient:
@@ -78,7 +78,7 @@ class BackgroundSetterClient:
             used_images = json.load(f)
         return self.dataclass_from_dict(UsedImages, used_images)
 
-    def get_available_images(self, all_images: list[str], orientation: ScreenOrientation) -> list[str]:
+    def get_available_images(self, all_images: list[str | pathlib.Path] , orientation: ScreenOrientation) -> list[str]:
         """Get a list of available images by removing the used images based on the given screen orientation.
 
         :param all_images: A list of strings representing the file names of all available images.

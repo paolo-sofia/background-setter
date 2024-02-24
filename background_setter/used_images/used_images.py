@@ -1,7 +1,7 @@
 import datetime
 from dataclasses import dataclass, asdict
 
-from used_images.available_images import ImagesList
+from .available_images import ImagesList
 
 
 @dataclass

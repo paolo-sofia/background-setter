@@ -5,11 +5,11 @@ from typing import List
 import cv2
 import numpy as np
 
-from screen.screen import Screen
-from screen.screen_resolution import ScreenResolution
-from window_protocol.desktop_environment import DesktopEnvironment
-from window_protocol.window_protocol import WindowProtocol
-from window_protocol.window_protocol_factory import WindowProtocolFactory
+from ..screen.screen import Screen
+from ..screen.screen_resolution import ScreenResolution
+from ..window_protocol.desktop_environment import DesktopEnvironment
+from ..window_protocol.window_protocol import WindowProtocol
+from ..window_protocol.window_protocol_factory import WindowProtocolFactory
 
 
 class Desktop:
