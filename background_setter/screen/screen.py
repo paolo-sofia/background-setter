@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from .screen_offset import ScreenOffset
-from .screen_orientation import ScreenOrientation
-from .screen_resolution import ScreenResolution
+from screen.screen_offset import ScreenOffset
+from screen.screen_orientation import ScreenOrientation
+from screen.screen_resolution import ScreenResolution
 
 
 @dataclass

@@ -6,9 +6,9 @@ import uuid
 import zoneinfo
 from dataclasses import fields
 
-from ..screen.screen_orientation import ScreenOrientation
-from ..used_images.available_images import ImagesList
-from ..used_images.used_images import UsedImages
+from screen.screen_orientation import ScreenOrientation
+from used_images.available_images import ImagesList
+from used_images.used_images import UsedImages
 
 
 class BackgroundSetterClient:
