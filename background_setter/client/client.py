@@ -48,7 +48,7 @@ class BackgroundSetterClient:
         try:
             fieldtypes = {f.name: f.type for f in fields(klass)}
             return klass(**{f: self.dataclass_from_dict(fieldtypes[f], dikt[f]) for f in dikt})
-        except Exception:
+        except:
             return dikt
 
     def initialize_device_id(self) -> str:
